@@ -9,9 +9,15 @@ public class Kiosk {
     private Scanner scanner; // 사용자 입력을 위한 Scanner
 
     // ✅ 생성자: 메뉴 초기화 및 Scanner 생성
-    public Kiosk() {
-        this.menu = new Menu();
+    public Kiosk(Menu menu) {
+        this.menu = menu;
         this.scanner = new Scanner(System.in);
+    }
+
+    // ✅ 프로그램 실행을 담당하는 메서드 추가
+    public void start() {
+        System.out.println("✅ 키오스크 프로그램을 시작합니다.");
+        run();
     }
 
     // ✅ 키오스크 실행 메서드: 사용자 입력을 처리하는 루프
