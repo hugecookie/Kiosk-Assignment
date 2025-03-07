@@ -1,33 +1,25 @@
 package com.example.kiosk;
 
-import java.util.List;
+// ✅ 메뉴 아이템 클래스: 개별 메뉴 정보를 저장하는 역할
+public class MenuItem {
+    private String name;        // 메뉴 이름
+    private double price;       // 가격
+    private String description; // 메뉴 설명
 
-// 메뉴 아이템 클래스
-class MenuItem {
-    private String name;
-    private double price;
-
-    // 생성자
-    public MenuItem(String name, double price) {
+    // ✅ 생성자: 객체를 생성할 때 필수 값 설정
+    public MenuItem(String name, double price, String description) {
         this.name = name;
         this.price = price;
+        this.description = description;
     }
 
-    // Getter
-    public String getName() {
-        return name;
-    }
+    // ✅ Getter 메서드: 각 필드 값을 읽을 수 있도록 제공
+    public String getName() { return name; }
+    public double getPrice() { return price; }
+    public String getDescription() { return description; }
 
-    public double getPrice() {
-        return price;
-    }
-
-    // Setter
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
+    // ✅ Setter 메서드: 각 필드 값을 변경할 수 있도록 제공
+    public void setName(String name) { this.name = name; }
+    public void setPrice(double price) { this.price = price; }
+    public void setDescription(String description) { this.description = description; }
 }

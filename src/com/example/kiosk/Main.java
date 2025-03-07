@@ -1,9 +1,9 @@
 package com.example.kiosk;
 
-import java.util.List;
-
-public class Main{
+// ✅ 메인 시작 페이지 실행 화면
+public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, Kiosk!");
+        Kiosk kiosk = new Kiosk();
+        kiosk.run(); // 키오스크 실행
     }
 }
