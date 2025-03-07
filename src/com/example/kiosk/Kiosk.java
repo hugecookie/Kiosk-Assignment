@@ -12,14 +12,6 @@ public class Kiosk {
     public Kiosk() {
         this.menu = new Menu();
         this.scanner = new Scanner(System.in);
-        initializeMenu(); // 기본 메뉴 설정
-    }
-
-    // ✅ 기본 메뉴 등록 (샘플 메뉴 추가)
-    private void initializeMenu() {
-        menu.addMenuItem(new MenuItem("ShackBurger", 6.9, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
-        menu.addMenuItem(new MenuItem("SmokeShack", 8.9, "베이컨과 체리 페퍼가 추가된 치즈버거"));
-        menu.addMenuItem(new MenuItem("Shroom Burger", 9.4, "포토벨로 버섯 패티와 치즈가 토핑된 버거"));
     }
 
     // ✅ 키오스크 실행 메서드: 사용자 입력을 처리하는 루프
@@ -47,6 +39,7 @@ public class Kiosk {
                 // ✅ 선택한 메뉴 가져오기 및 출력
                 MenuItem selectedItem = menu.getMenuItem(choice - 1);
                 System.out.println("✅ 선택한 메뉴: " + selectedItem.getName() + " - " + selectedItem.getPrice() + " USD");
+                System.out.println("   " + selectedItem.getDescription());
 
             } catch (InputMismatchException e) {
                 // ✅ 숫자가 아닌 입력 예외 처리

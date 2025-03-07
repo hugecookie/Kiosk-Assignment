@@ -10,6 +10,14 @@ public class Menu {
     // ✅ 생성자: 빈 리스트로 초기화
     public Menu() {
         this.menuItems = new ArrayList<>();
+        initializeMenu(); // ✅ 기본 메뉴 자동 추가
+    }
+
+    // ✅ 기본 메뉴 추가 메서드
+    private void initializeMenu() {
+        menuItems.add(new Burger("ShackBurger", 6.9, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
+        menuItems.add(new Burger("SmokeShack", 8.9, "베이컨과 체리 페퍼가 추가된 치즈버거"));
+        menuItems.add(new Burger("Shroom Burger", 9.4, "포토벨로 버섯 패티와 치즈가 토핑된 버거"));
     }
 
     // ✅ 메뉴 추가 메서드: 새로운 메뉴 아이템을 리스트에 추가
@@ -56,5 +64,10 @@ public class Menu {
     // ✅ 메뉴 개수를 반환하는 메서드 (외부에서 접근 가능)
     public int getMenuSize() {
         return menuItems.size();
+    }
+
+    // ✅ 모든 메뉴 리스트 반환 (외부에서 메뉴 확인 가능)
+    public List<MenuItem> getMenuItems() {
+        return new ArrayList<>(menuItems); // ✅ 외부에서 리스트 변경되지 않도록 새로운 리스트 반환
     }
 }
