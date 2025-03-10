@@ -17,9 +17,4 @@ public class MenuItem {
     public String getName() { return name; }
     public double getPrice() { return price; }
     public String getDescription() { return description; }
-
-    // ✅ Setter 메서드: 각 필드 값을 변경할 수 있도록 제공
-    public void setName(String name) { this.name = name; }
-    public void setPrice(double price) { this.price = price; }
-    public void setDescription(String description) { this.description = description; }
 }
