@@ -1,36 +1,35 @@
 package com.example.kiosk;
 
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 // ✅ 키오스크 클래스: 사용자 입력을 받아 메뉴를 선택하는 역할
 public class Kiosk {
-    private List<MenuItem> menuItems; // ✅ 여러 개의 `MenuItem`을 관리
-    private Scanner scanner; // 사용자 입력을 위한 Scanner
+    private Menu menu; // ✅ `Menu` 클래스를 직접 관리
+    private Scanner scanner; // ✅ 사용자 입력을 위한 Scanner
 
-    // ✅ 생성자: `Menu`에서 `menuItems` 리스트를 받아 초기화
-    public Kiosk(List<MenuItem> menuItems) {
-        this.menuItems = menuItems;
+    // ✅ 생성자: `Menu` 객체를 받아 초기화
+    public Kiosk(Menu menu) {
+        this.menu = menu;
         this.scanner = new Scanner(System.in);
     }
 
-    // ✅ 프로그램 실행을 담당하는 메서드 추가
+    // ✅ 프로그램 실행을 담당하는 메서드
     public void start() {
         System.out.println("✅ 키오스크 프로그램을 시작합니다.");
-        run();
+        run(); // ✅ 실행 루프 시작
     }
 
     // ✅ 키오스크 실행 메서드: 사용자 입력을 처리하는 루프
     public void run() {
         while (true) { // 프로그램이 종료될 때까지 반복
             try {
-                displayMenu(); // ✅ 현재 메뉴 출력
-                System.out.print("메뉴 번호를 선택하세요: ");
+                menu.displayMenu(); // ✅ `Menu` 클래스의 메뉴 출력 메서드 호출
+                System.out.print("메뉴 번호를 선택하세요 (0: 종료): ");
 
-                // 사용자 입력 받기
+                // ✅ 사용자 입력 받기
                 int choice = scanner.nextInt();
-                scanner.nextLine(); // ✅ 버퍼 비우기
+                scanner.nextLine(); // ✅ 입력 버퍼 비우기
 
                 // ✅ 0 입력 시 프로그램 종료
                 if (choice == 0) {
@@ -39,14 +38,12 @@ public class Kiosk {
                 }
 
                 // ✅ 입력값이 메뉴 개수를 벗어나면 예외 발생
-                if (choice < 1 || choice > menuItems.size()) {
+                if (choice < 1 || choice > menu.getMenuSize()) {
                     throw new IndexOutOfBoundsException("✅ 올바른 메뉴 번호를 입력하세요.");
                 }
 
-                // ✅ 선택한 메뉴 가져오기 및 출력
-                MenuItem selectedItem = menuItems.get(choice - 1);
-                System.out.println("✅ 선택한 메뉴: " + selectedItem.getName() + " - " + selectedItem.getPrice() + " USD");
-                System.out.println("   " + selectedItem.getDescription());
+                // ✅ 선택한 메뉴 출력
+                menu.displaySelectedItem(choice - 1);
 
             } catch (InputMismatchException e) {
                 // ✅ 숫자가 아닌 입력 예외 처리
@@ -61,16 +58,5 @@ public class Kiosk {
             }
         }
         scanner.close(); // ✅ 프로그램 종료 시 Scanner 닫기
-    }
-
-    // ✅ 메뉴 출력 메서드 추가
-    private void displayMenu() {
-        System.out.println("\n=== 메뉴 목록 ===");
-        for (int i = 0; i < menuItems.size(); i++) {
-            MenuItem item = menuItems.get(i);
-            System.out.println((i + 1) + ". " + item.getName() + " - " + item.getPrice() + " USD");
-            System.out.println("   " + item.getDescription());
-        }
-        System.out.println("0. 종료");
     }
 }

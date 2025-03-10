@@ -1,10 +1,10 @@
 package com.example.kiosk;
 
-// ✅ 메인 시작 페이지 실행 화면
+// ✅ 메인 실행 클래스
 public class Main {
     public static void main(String[] args) {
-        Menu menu = new Menu();
-        Kiosk kiosk = new Kiosk(menu.getMenuItems());
-        kiosk.start(); // ✅ main()에서 직접 실행하지 않고, Kiosk에서 실행 흐름을 제어
+        Menu menu = new Menu();  // ✅ `Menu` 객체 생성
+        Kiosk kiosk = new Kiosk(menu);  // ✅ `Kiosk` 생성 시 `menu` 객체를 넘겨줌
+        kiosk.start();  // ✅ 프로그램 실행
     }
 }
