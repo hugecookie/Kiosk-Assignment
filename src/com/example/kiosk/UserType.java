@@ -7,18 +7,18 @@ public enum UserType {
     STUDENT("학생", 0.03), // 3% 할인
     GENERAL("일반", 0.00); // 할인 없음
 
-    private final String koreanName; // 한글 이름 필드
+    private final String jobTitle; // 한글 이름 필드
     private final double discountRate; // 할인율
 
     // ✅ 생성자
-    UserType(String koreanName, double discountRate) {
-        this.koreanName = koreanName;
+    UserType(String jobTitle, double discountRate) {
+        this.jobTitle = jobTitle;
         this.discountRate = discountRate;
     }
 
     // ✅ 한글 이름 반환 메서드
-    public String getKoreanName() {
-        return koreanName;
+    public String getJobTitle() {
+        return jobTitle;
     }
 
     // ✅ 할인율 반환 메서드

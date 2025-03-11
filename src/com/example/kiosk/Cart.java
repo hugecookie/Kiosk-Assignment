@@ -71,7 +71,7 @@ public class Cart {
     private UserType selectUserType(Scanner scanner) {
         System.out.println("\n할인 정보를 입력해주세요.");
         for (UserType userType : UserType.values()) {
-            System.out.println((userType.ordinal() + 1) + ". " + userType.getKoreanName() + " : " + (int) (userType.getDiscountRate() * 100) + "%");
+            System.out.println((userType.ordinal() + 1) + ". " + userType.getJobTitle()+ " : " + (int) (userType.getDiscountRate() * 100) + "%");
         }
         System.out.print("사용자 유형을 선택하세요: ");
 
