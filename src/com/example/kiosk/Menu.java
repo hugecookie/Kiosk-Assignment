@@ -41,11 +41,14 @@ public class Menu {
         System.out.println("0. 🔙 뒤로가기");
     }
 
-    // ✅ 특정 인덱스의 메뉴 아이템 반환
-    public MenuItem getMenuItem(int index) {
+    // ✅ 선택한 메뉴 출력 메서드
+    public void displaySelectedItem(int index) {
         if (index >= 0 && index < menuItems.size()) {
-            return menuItems.get(index);
+            MenuItem selectedItem = menuItems.get(index);
+            System.out.println("\n✅ 선택한 메뉴: " + selectedItem.getName() + " | W " + selectedItem.getPrice());
+            System.out.println("   " + selectedItem.getDescription());
+        } else {
+            System.out.println("❌ 잘못된 메뉴 번호입니다.");
         }
-        return null; // 잘못된 입력이면 null 반환
     }
 }
