@@ -7,16 +7,19 @@ public class Kiosk {
     private List<Menu> menus; // ✅ 여러 개의 메뉴 카테고리를 관리하는 리스트
     private Scanner scanner; // ✅ 사용자 입력을 받기 위한 Scanner 객체
 
+    // ✅ 생성자: Kiosk 객체를 생성하고 초기화
     public Kiosk(List<Menu> menus) {
         this.menus = menus;
         this.scanner = new Scanner(System.in);
     }
 
+    // ✅ 키오스크 프로그램 실행 메서드
     public void start() {
         System.out.println("✅ 키오스크 프로그램을 시작합니다.");
         run(); // ✅ 실행 루프 시작
     }
 
+    // ✅ 메인 메뉴를 출력하고 사용자의 입력을 받아 실행하는 메서드
     public void run() {
         int categoryChoice; // ✅ 사용자의 입력값 저장 변수
 
@@ -45,6 +48,7 @@ public class Kiosk {
         System.out.println("키오스크를 종료합니다."); // ✅ 프로그램 종료 메시지 출력
     }
 
+    // ✅ 메인 메뉴(카테고리 목록)를 출력하는 메서드
     private void displayMainMenu() {
         System.out.println("\n[ MAIN MENU ]");
         for (int i = 0; i < menus.size(); i++) {
@@ -53,6 +57,7 @@ public class Kiosk {
         System.out.println("0. 🔚 종료"); // ✅ 종료 옵션 추가
     }
 
+    // ✅ 특정 카테고리를 선택했을 때 실행되는 메서드
     private void handleMenuSelection(Menu menu) {
         int menuChoice; // ✅ 사용자의 입력값 저장 변수
 
