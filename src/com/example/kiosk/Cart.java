@@ -19,6 +19,15 @@ public class Cart {
         System.out.println("🛒 " + item.getName() + "가(이) 장바구니에 추가되었습니다!");
     }
 
+    // ✅ 총 주문 금액 계산
+    public double calculateTotal() {
+        double total = 0;
+        for (MenuItem item : cartItems) {
+            total += item.getPrice();
+        }
+        return total;
+    }
+
     // ✅ 장바구니 출력 및 삭제 기능
     public void displayCart(Scanner scanner) {
         if (cartItems.isEmpty()) {
@@ -31,6 +40,7 @@ public class Cart {
             MenuItem item = cartItems.get(i);
             System.out.println((i + 1) + ". " + item.getName() + " | W " + item.getPrice());
         }
+        System.out.println("\n💰 총 주문 금액: W " + calculateTotal());
         System.out.println("0. 🔙 뒤로가기");
 
         System.out.print("삭제할 아이템 번호를 입력하세요 (0: 뒤로가기): ");
