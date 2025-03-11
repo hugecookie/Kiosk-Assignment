@@ -3,6 +3,7 @@ package com.example.kiosk;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Cart {
     private List<MenuItem> cartItems;
@@ -25,9 +26,7 @@ public class Cart {
 
     // ✅ 할인율을 적용한 최종 금액 계산
     public double calculateDiscountedTotal(UserType userType) {
-        double total = calculateTotal();
-        double discount = total * userType.getDiscountRate();
-        return total - discount; // ✅ 할인된 최종 금액 반환
+        return calculateTotal() * (1 - userType.getDiscountRate()); // ✅ 할인율 적용
     }
 
     // ✅ 장바구니 출력 및 삭제 / 구매 확정 기능
@@ -46,7 +45,6 @@ public class Cart {
         System.out.println("0. 🔙 뒤로가기");
 
         System.out.print("옵션을 선택하세요: ");
-
         try {
             int choice = Integer.parseInt(scanner.nextLine().trim());
 
@@ -71,16 +69,15 @@ public class Cart {
     private UserType selectUserType(Scanner scanner) {
         System.out.println("\n할인 정보를 입력해주세요.");
         for (UserType userType : UserType.values()) {
-            System.out.println((userType.ordinal() + 1) + ". " + userType.getJobTitle()+ " : " + (int) (userType.getDiscountRate() * 100) + "%");
+            System.out.println((userType.ordinal() + 1) + ". " + userType.getJobTitle() + " : " + (int) (userType.getDiscountRate() * 100) + "%");
         }
         System.out.print("사용자 유형을 선택하세요: ");
 
         try {
             int choice = Integer.parseInt(scanner.nextLine().trim());
-
             return (choice >= 1 && choice <= UserType.values().length) ? UserType.values()[choice - 1] : UserType.GENERAL;
         } catch (NumberFormatException e) {
-            System.out.println("❌ 잘못된 입력입니다. 기본값(일반)으로 설정합니다.");
+            System.out.println("❌ 잘못된 입력입니다. 기본값(일반 고객)으로 설정합니다.");
             return UserType.GENERAL;
         }
     }
@@ -105,25 +102,35 @@ public class Cart {
         cartItems.clear(); // ✅ 결제 후 장바구니 초기화
     }
 
-    // ✅ 아이템 삭제 기능 (삭제할 아이템 선택)
-    private void removeItemPrompt(Scanner scanner) {
-        System.out.print("삭제할 아이템 번호를 입력하세요 (0: 취소): ");
+    // ✅ 특정 메뉴 삭제 기능 (stream().filter() 사용)
+    public void removeItemByName(String itemName) {
+        long initialSize = cartItems.size();
 
-        try {
-            int choice = Integer.parseInt(scanner.nextLine().trim());
+        cartItems = cartItems.stream()
+                .filter(item -> !item.getName().equalsIgnoreCase(itemName)) // ✅ 해당 이름이 아닌 아이템만 유지
+                .collect(Collectors.toList()); // ✅ 새로운 리스트로 변환
 
-            if (choice == 0) {
-                return; // ✅ 삭제 취소
-            }
-
-            removeItem(choice - 1); // ✅ 아이템 삭제 수행
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            System.out.println("❌ 잘못된 입력입니다. 숫자를 입력하세요.");
+        if (cartItems.size() < initialSize) {
+            System.out.println("🗑️ " + itemName + "가(이) 장바구니에서 삭제되었습니다!");
+        } else {
+            System.out.println("❌ 해당 메뉴가 장바구니에 없습니다.");
         }
     }
 
-    public void removeItem(int index) {
-        MenuItem removedItem = cartItems.remove(index);
-        System.out.println("🗑️ " + removedItem.getName() + "가(이) 장바구니에서 삭제되었습니다!");
+    // ✅ 장바구니에서 아이템 삭제 요청 처리
+    private void removeItemPrompt(Scanner scanner) {
+        System.out.print("삭제할 메뉴를 입력하세요 (0: 취소): ");
+
+        try {
+            String itemName = scanner.nextLine().trim();
+
+            if ("0".equals(itemName)) {
+                return; // ✅ 취소 가능
+            }
+
+            removeItemByName(itemName);
+        } catch (Exception e) {
+            System.out.println("❌ 삭제 중 오류가 발생했습니다.");
+        }
     }
 }
