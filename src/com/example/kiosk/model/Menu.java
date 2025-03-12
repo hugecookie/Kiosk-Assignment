@@ -8,21 +8,10 @@ public class Menu {
     private String categoryName; // 카테고리 이름 (ex. Burgers, Drinks, Desserts)
     private List<MenuItem> menuItems; // 해당 카테고리의 메뉴 리스트
 
-    // ✅ 생성자: 카테고리 이름 설정 및 리스트 초기화
-    public Menu(String categoryName) {
-        this.categoryName = categoryName;
-        this.menuItems = new ArrayList<>();
-    }
-
     // ✅ 새로운 생성자 (List<MenuItem> 포함)
     public Menu(String categoryName, List<MenuItem> menuItems) {
         this.categoryName = categoryName;
         this.menuItems = menuItems;
-    }
-
-    // ✅ 메뉴 아이템 추가 메서드
-    public void addMenuItem(MenuItem item) {
-        menuItems.add(item);
     }
 
     // ✅ 메뉴 아이템 getter 메서드
