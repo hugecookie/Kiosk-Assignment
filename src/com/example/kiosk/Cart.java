@@ -26,7 +26,7 @@ public class Cart {
 
     // ✅ 할인율을 적용한 최종 금액 계산
     public double calculateDiscountedTotal(UserType userType) {
-        return calculateTotal() * (1 - userType.getDiscountRate()); // ✅ 할인율 적용
+        return userType.applyDiscount(calculateTotal()); // ✅ UserType에서 직접 계산
     }
 
     // ✅ 장바구니 출력 및 삭제 / 구매 확정 기능
@@ -67,11 +67,9 @@ public class Cart {
 
     // ✅ 사용자 유형 선택 후 할인 적용
     private UserType selectUserType(Scanner scanner) {
-        System.out.println("\n할인 정보를 입력해주세요.");
-        for (UserType userType : UserType.values()) {
-            System.out.println((userType.ordinal() + 1) + ". " + userType.getJobTitle() + " : " + (int) (userType.getDiscountRate() * 100) + "%");
-        }
-        System.out.print("사용자 유형을 선택하세요: ");
+
+        // ✅ 할인율 메뉴 출력
+        UserType.displayDiscountMenu();
 
         try {
             int choice = Integer.parseInt(scanner.nextLine().trim());
