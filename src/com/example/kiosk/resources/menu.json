@@ -1,0 +1,20 @@
+{
+  "menus": [
+    {
+      "category": "Burgers",
+      "items": [
+        { "name": "ShackBurger", "price": 6.9, "description": "토마토, 양상추, 쉑소스가 토핑된 치즈버거" },
+        { "name": "SmokeShack", "price": 8.9, "description": "베이컨, 체리 페퍼에 쉑소스가 토핑된 버거" },
+        { "name": "CheeseBurger", "price": 7.9, "description": "참깨빵 위에 패티 2장 사이에 들어간 치즈의 풍미가 두드러지는 버거" }
+      ]
+    },
+    {
+      "category": "Drinks",
+      "items": [
+        { "name": "Coke Zero", "price": 2.5, "description": "모두가 찾는 제로 콜라" },
+        { "name": "Coke", "price": 2.5, "description": "시원한 코카콜라" },
+        { "name": "Lemonade", "price": 3.0, "description": "상큼한 레몬에이드" }
+      ]
+    }
+  ]
+}

@@ -14,6 +14,12 @@ public class Menu {
         this.menuItems = new ArrayList<>();
     }
 
+    // ✅ 새로운 생성자 (List<MenuItem> 포함)
+    public Menu(String categoryName, List<MenuItem> menuItems) {
+        this.categoryName = categoryName;
+        this.menuItems = menuItems;
+    }
+
     // ✅ 메뉴 아이템 추가 메서드
     public void addMenuItem(MenuItem item) {
         menuItems.add(item);
