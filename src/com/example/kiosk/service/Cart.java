@@ -1,4 +1,7 @@
-package com.example.kiosk;
+package com.example.kiosk.service;
+
+import com.example.kiosk.model.MenuItem;
+import com.example.kiosk.model.UserType;
 
 import java.util.ArrayList;
 import java.util.List;

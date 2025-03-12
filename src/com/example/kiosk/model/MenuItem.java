@@ -1,4 +1,4 @@
-package com.example.kiosk;
+package com.example.kiosk.model;
 
 // ✅ 메뉴 아이템 클래스: 개별 메뉴 정보를 저장하는 역할
 public class MenuItem {

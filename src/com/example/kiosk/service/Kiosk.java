@@ -1,4 +1,7 @@
-package com.example.kiosk;
+package com.example.kiosk.service;
+
+import com.example.kiosk.model.Menu;
+import com.example.kiosk.model.MenuItem;
 
 import java.util.List;
 import java.util.Scanner;

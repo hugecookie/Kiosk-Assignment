@@ -1,5 +1,7 @@
-package com.example.kiosk;
+package com.example.kiosk.config;
 
+import com.example.kiosk.model.Menu;
+import com.example.kiosk.model.MenuItem;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

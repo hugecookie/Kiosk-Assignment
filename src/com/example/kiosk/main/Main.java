@@ -1,6 +1,9 @@
-package com.example.kiosk;
+package com.example.kiosk.main;
 
-import java.util.ArrayList;
+import com.example.kiosk.service.Kiosk;
+import com.example.kiosk.model.Menu;
+import com.example.kiosk.config.MenuLoader;
+
 import java.util.List;
 
 // ✅ 프로그램 실행 클래스
