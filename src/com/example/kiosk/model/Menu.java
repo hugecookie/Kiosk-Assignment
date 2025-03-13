@@ -1,7 +1,7 @@
 package com.example.kiosk.model;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 // ✅ 특정 카테고리에 속하는 메뉴들을 관리하는 클래스
 public class Menu {
@@ -28,11 +28,10 @@ public class Menu {
     // ✅ 카테고리 내 메뉴 출력 메서드
     public void displayMenuItems() {
         System.out.println("\n[ " + categoryName.toUpperCase() + " MENU ]");
-        for (int i = 0; i < menuItems.size(); i++) {
-            MenuItem item = menuItems.get(i);
-            System.out.println((i + 1) + ". " + item.getName() + " | W " + item.getPrice());
-            System.out.println("   " + item.getDescription());
-        }
+        IntStream.range(0, menuItems.size())
+                .mapToObj(i -> (i + 1) + ". " + menuItems.get(i).getName() + " | W " + menuItems.get(i).getPrice() +
+                        "\n   " + menuItems.get(i).getDescription())
+                .forEach(System.out::println);
         System.out.println("0. 🔙 뒤로가기");
     }
 

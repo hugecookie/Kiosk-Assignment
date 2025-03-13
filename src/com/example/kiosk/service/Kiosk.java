@@ -5,6 +5,7 @@ import com.example.kiosk.model.MenuItem;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class Kiosk {
     private List<Menu> menus; // ✅ 여러 개의 메뉴 카테고리를 관리하는 리스트
@@ -92,9 +93,9 @@ public class Kiosk {
     // ✅ 메인 메뉴(카테고리 목록)를 출력하는 메서드
     private void displayMainMenu() {
         System.out.println("\n[ MAIN MENU ]");
-        for (int i = 0; i < menus.size(); i++) {
-            System.out.println((i + 1) + ". " + menus.get(i).getCategoryName()); // ✅ 카테고리 출력
-        }
+        IntStream.range(0, menus.size())
+                .mapToObj(i -> (i + 1) + ". " + menus.get(i).getCategoryName()) // ✅ 카테고리 출력
+                .forEach(System.out::println);
         System.out.println("0. 🔚 뒤로가기"); // ✅ 뒤로가기
     }
 

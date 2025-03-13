@@ -1,5 +1,7 @@
 package com.example.kiosk.model;
 
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
 public enum UserType {
@@ -25,13 +27,17 @@ public enum UserType {
         return discountFunction.apply(total);
     }
 
-    // ✅ 할인율 메뉴 출력 메서드 추가
+    // ✅ 할인율 메뉴 출력 메서드
     public static void displayDiscountMenu() {
         System.out.println("\n할인 정보를 입력해주세요.");
-        for (UserType userType : UserType.values()) {
-            double discountPercentage = 100 - userType.applyDiscount(100); // ✅ 100원을 기준으로 할인율 계산
-            System.out.println((userType.ordinal() + 1) + ". " + userType.getJobTitle() + " : " + (int) discountPercentage + "%");
-        }
+        AtomicInteger index = new AtomicInteger(1); // ✅ 순번을 관리하기 위한 AtomicInteger 사용
+
+        Arrays.stream(UserType.values())
+                .map(userType -> index.getAndIncrement() + ". "
+                        + userType.getJobTitle()
+                        + " : " + (int) (100 - userType.applyDiscount(100)) + "%") // ✅ 할인율 계산 후 출력 문자열 생성
+                .forEach(System.out::println);
+
         System.out.print("사용자 유형을 선택하세요: ");
     }
 }
