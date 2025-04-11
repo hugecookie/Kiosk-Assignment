@@ -8,7 +8,8 @@ public enum UserType {
     VETERAN("국가유공자", total -> total * 0.90), // 10% 할인
     SOLDIER("군인", total -> total * 0.95), // 5% 할인
     STUDENT("학생", total -> total * 0.97), // 3% 할인
-    GENERAL("일반", total -> total); // 할인 없음
+    GENERAL("일반", total -> total), // 할인 없음
+    KID("어린이", total -> total * 0.5);
 
     private final String jobTitle;
     private final Function<Double, Double> discountFunction;
